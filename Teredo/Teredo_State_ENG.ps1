@@ -1,4 +1,4 @@
-Write-Host "Teredo Setup and Startup Script by 2degreesGlaceon_. For support, please add '2degreesglaceonwx_' on Discord."
+Write-Host "Teredo Setup and Startup Script by Hi5Glaceon_. For support, please add 'Hi5Glaceon_' on Discord."
 
 $IsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()
 ).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -55,3 +55,4 @@ if ($disable -match '^[Yy]$') {
 }
 
 Read-Host "Press Enter to exit the script"
+
