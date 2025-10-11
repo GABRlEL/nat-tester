@@ -1,5 +1,5 @@
 ﻿<#
-    MKWii NAT-Test with stunclient.exe by 2degreesGlaceon_
+    MKWii NAT-Test with stunclient.exe by Hi5Glaceon_
     Checks the NAT-Type for random MKWii ports at 22000-22999
 #>
 
@@ -73,6 +73,7 @@ foreach ($port in $portsToTest) {
 Write-Host "`n=== Summary ===" -ForegroundColor Magenta
 $results | Format-Table LocalPort, PublicIP, PublicPort, NATType
 Write-Host ""
+
 Write-Host "NAT explanation:" -ForegroundColor Cyan
 Write-Host "----------------" -ForegroundColor Cyan
 Write-Host "1. Cone / Full Cone: Ideal for peer-to-peer. All connections possible. Possibly minor restrictions." -ForegroundColor Green
