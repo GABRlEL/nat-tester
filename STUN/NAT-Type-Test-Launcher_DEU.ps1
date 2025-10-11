@@ -1,5 +1,5 @@
 ﻿<#
-    MKWii NAT-Test mit stunclient.exe von 2degreesGlaceon_
+    MKWii NAT-Test mit stunclient.exe von Hi5Glaceon_
     Prüft NAT-Typ für zufällige Ports 22000-22999
 #>
 
@@ -78,6 +78,7 @@ Write-Host "----------------" -ForegroundColor Cyan
 Write-Host "1. Cone / Full Cone: Ideal für Peer-to-Peer. Alle Verbindungen möglich. Evtl. leichte Einschränkungen möglich." -ForegroundColor Green
 Write-Host "2. (Port)-Restricted: Meist nur Einschränkungen bei eingehenden Verbindungen. Nur bekannte Hosts können antworten. P2P meistens möglich." -ForegroundColor Yellow
 Write-Host "3. Symmetric (Symmetrisch): Eingehende Verbindungen stark eingeschränkt, P2P-Verbindungen oft problematisch." -ForegroundColor Red
+
 Write-Host ""
 Write-Host "`n=== Test abgeschlossen ==="
 Read-Host -Prompt "Drücke Enter, um das Fenster zu schließen"
