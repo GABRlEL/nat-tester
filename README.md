@@ -1,2 +1,2 @@
 # nat-tester
-STUN- &amp; Teredo-based NAT testers by 2degreesglaceonwx_ on Discord
+STUN- &amp; Teredo-based NAT testers by Hi5Glaceon_ on Discord
