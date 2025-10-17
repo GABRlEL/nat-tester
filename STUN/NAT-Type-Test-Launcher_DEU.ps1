@@ -1,12 +1,12 @@
 ﻿<#
-    MKWii NAT-Test mit stunclient.exe von Hi5Glaceon_
+    MKWii NAT-Test mit stunclient.exe von Hi5Glaceon_ (Kontakt: hi5glaceon_ auf Discord)
     Prüft NAT-Typ für zufällige Ports 22000-22999
 #>
 
 param(
     [int]$TestPorts = 5,
-    [string]$StunServer = "stun.l.google.com",
-    [int]$StunPort = 19302
+    [string]$StunServer = "stun.1und1.de",
+    [int]$StunPort = 3478          
 )
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -21,6 +21,7 @@ $portsToTest = 22000..22999 | Get-Random -Count $TestPorts
 $results = @()
 
 Write-Host "🎮 Starte NAT-Test für Ports: $($portsToTest -join ', ')" -ForegroundColor Cyan
+Write-Host "MKWii NAT-Test mit stunclient.exe von Hi5Glaceon_ (Kontakt: hi5glaceon_ auf Discord)" -ForegroundColor Cyan
 
 foreach ($port in $portsToTest) {
     Write-Host "`n=== Teste lokaler Port $port ===" -ForegroundColor Yellow
@@ -78,7 +79,6 @@ Write-Host "----------------" -ForegroundColor Cyan
 Write-Host "1. Cone / Full Cone: Ideal für Peer-to-Peer. Alle Verbindungen möglich. Evtl. leichte Einschränkungen möglich." -ForegroundColor Green
 Write-Host "2. (Port)-Restricted: Meist nur Einschränkungen bei eingehenden Verbindungen. Nur bekannte Hosts können antworten. P2P meistens möglich." -ForegroundColor Yellow
 Write-Host "3. Symmetric (Symmetrisch): Eingehende Verbindungen stark eingeschränkt, P2P-Verbindungen oft problematisch." -ForegroundColor Red
-
 Write-Host ""
 Write-Host "`n=== Test abgeschlossen ==="
 Read-Host -Prompt "Drücke Enter, um das Fenster zu schließen"

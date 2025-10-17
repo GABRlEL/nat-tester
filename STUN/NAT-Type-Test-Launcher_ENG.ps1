@@ -1,12 +1,12 @@
 ﻿<#
-    MKWii NAT-Test with stunclient.exe by Hi5Glaceon_
+    MKWii NAT-Test with stunclient.exe by Hi5Glaceon_ (Contact: hi5glaceon_ on Discord)
     Checks the NAT-Type for random MKWii ports at 22000-22999
 #>
 
 param(
     [int]$TestPorts = 5,
-    [string]$StunServer = "stun.l.google.com",
-    [int]$StunPort = 19302          
+    [string]$StunServer = "stun.1und1.de",
+    [int]$StunPort = 3478          
 )
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -21,6 +21,7 @@ $portsToTest = 22000..22999 | Get-Random -Count $TestPorts
 $results = @()
 
 Write-Host "🎮 Starting NAT test for ports: $($portsToTest -join ', ')" -ForegroundColor Cyan
+Write-Host "MKWii NAT-Test with stunclient.exe by Hi5Glaceon_ (Contact: hi5glaceon_ on Discord)" -ForegroundColor Cyan
 
 foreach ($port in $portsToTest) {
     Write-Host "`n=== Testing local port $port ===" -ForegroundColor Yellow
@@ -73,7 +74,6 @@ foreach ($port in $portsToTest) {
 Write-Host "`n=== Summary ===" -ForegroundColor Magenta
 $results | Format-Table LocalPort, PublicIP, PublicPort, NATType
 Write-Host ""
-
 Write-Host "NAT explanation:" -ForegroundColor Cyan
 Write-Host "----------------" -ForegroundColor Cyan
 Write-Host "1. Cone / Full Cone: Ideal for peer-to-peer. All connections possible. Possibly minor restrictions." -ForegroundColor Green
