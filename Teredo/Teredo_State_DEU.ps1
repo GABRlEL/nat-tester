@@ -1,4 +1,4 @@
-Write-Host "Teredo Setup und Startup Skript von Hi5Glaceon_. FÃ¼r Support, bitte mich auf Discord adden: 'Hi5Glaceon_'."
+Write-Host "Teredo Setup und Startup Skript von Hi5Glaceon_. Kontakt: hi5glaceon_ auf Discord."
 
 $IsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()
 ).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -11,13 +11,14 @@ if (-not $IsAdmin) {
     exit
 }
 
-Write-Host "Skript lÃ¤uft mit Administratorrechten." -ForegroundColor Green
+Write-Host "Skript läuft mit Administratorrechten." -ForegroundColor Green
 
 netsh interface teredo set state type=enterpriseclient servername=win1910.ipv6.microsoft.com
 
-Write-Host "Teredo baut im Hintergrund eine Verbindung zu dem Test-Server auf... Bitte 10 Sekunden warten." -ForegroundColor Yellow
+Write-Host "Falls eine FRITZ!Box als Router verwendet wird, bitte den Teredo-Filter deaktivieren da es sich hierbei um eine ältere Methode handelt." -ForegroundColor Red
+Write-Host "Teredo baut im Hintergrund eine Verbindung zu dem Test-Server auf... Bitte 30 Sekunden warten." -ForegroundColor Yellow
 
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds 30
 
 $teredoStatus = netsh interface teredo show state
 
@@ -30,22 +31,21 @@ foreach ($line in $teredoStatus) {
     }
 }
 
-Write-Host "!! HINWEIS !!: Sollte bei Status 'Probe (primary server)' stehen, kÃ¶nnte dies an Anzeichen fÃ¼r eine DS-Lite oder einer CG-NAT in der Verbindung sein. Teredo funktioniert dann nicht." -ForegroundColor Red
 Write-Host ""
-Write-Host "NAT-ErklÃ¤rung:" -ForegroundColor Cyan
+Write-Host "NAT-Erklärung:" -ForegroundColor Cyan
 Write-Host "----------------" -ForegroundColor Cyan
-Write-Host "1. None (global connectivity): Ideal fÃ¼r Peer-to-Peer. Alle Verbindungen mÃ¶glich." -ForegroundColor Green
-Write-Host "2. Cone / Full Cone: Ideal fÃ¼r Peer-to-Peer. Alle Verbindungen mÃ¶glich. Evtl. leichte EinschrÃ¤nkungen mÃ¶glich." -ForegroundColor Green
-Write-Host "3. (Port)-Restricted: Meist nur EinschrÃ¤nkungen bei eingehenden Verbindungen. Nur bekannte Hosts kÃ¶nnen antworten. P2P meistens mÃ¶glich." -ForegroundColor Yellow
-Write-Host "4. Symmetric (Symmetrisch): Eingehende Verbindungen stark eingeschrÃ¤nkt, P2P-Verbindungen oft problematisch." -ForegroundColor Red
+Write-Host "1. None (global connectivity): Ideal für Peer-to-Peer. Alle Verbindungen möglich." -ForegroundColor Green
+Write-Host "2. Cone / Full Cone: Ideal für Peer-to-Peer. Alle Verbindungen möglich. Evtl. leichte Einschränkungen möglich." -ForegroundColor Green
+Write-Host "3. (Port)-Restricted: Meist nur Einschränkungen bei eingehenden Verbindungen. Nur bekannte Hosts können antworten. P2P meistens möglich." -ForegroundColor Yellow
+Write-Host "4. Symmetric (Symmetrisch): Eingehende Verbindungen stark eingeschränkt, P2P-Verbindungen oft problematisch." -ForegroundColor Red
 Write-Host ""
 
 Write-Host ""
-Write-Host "Teredo wird in der Regel nur fÃ¼r Tests oder bestimmte Peer-to-Peer-Anwendungen benÃ¶tigt." -ForegroundColor Yellow
-Write-Host "Wenn Sie es nicht mehr benÃ¶tigen, wird empfohlen Teredo zu deaktivieren." -ForegroundColor Yellow
+Write-Host "Teredo wird in der Regel nur für Tests oder bestimmte Peer-to-Peer-Anwendungen benötigt." -ForegroundColor Yellow
+Write-Host "Wenn Sie es nicht mehr benötigen, wird empfohlen Teredo zu deaktivieren." -ForegroundColor Yellow
 Write-Host ""
 
-$disable = Read-Host "MÃ¶chten Sie Teredo jetzt deaktivieren? (Empfohlen) [J/N]"
+$disable = Read-Host "Möchten Sie Teredo jetzt deaktivieren? (Empfohlen) [J/N]"
 
 if ($disable -match '^[Jj]$') {
     netsh interface teredo set state disabled
@@ -54,5 +54,4 @@ if ($disable -match '^[Jj]$') {
     Write-Host "Teredo bleibt aktiviert." -ForegroundColor Cyan
 }
 
-Read-Host "DrÃ¼cken Sie Enter, um das Skript zu beenden"
-
+Read-Host "Drücken Sie Enter, um das Skript zu beenden"

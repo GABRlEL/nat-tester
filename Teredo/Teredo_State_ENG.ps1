@@ -1,4 +1,4 @@
-Write-Host "Teredo Setup and Startup Script by Hi5Glaceon_. For support, please add 'Hi5Glaceon_' on Discord."
+Write-Host "Teredo Setup and Startup Script by Hi5Glaceon_. Contact: hi5glaceon_ on Discord."
 
 $IsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()
 ).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -15,9 +15,9 @@ Write-Host "Script is running with Administrator privileges." -ForegroundColor G
 
 netsh interface teredo set state type=enterpriseclient servername=win1910.ipv6.microsoft.com
 
-Write-Host "Teredo is establishing a connection to the test server in the background... Please wait 10 seconds." -ForegroundColor Yellow
+Write-Host "Teredo is establishing a connection to the test server in the background... Please wait 30 seconds." -ForegroundColor Yellow
 
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds 30
 
 $teredoStatus = netsh interface teredo show state
 
@@ -30,7 +30,6 @@ foreach ($line in $teredoStatus) {
     }
 }
 
-Write-Host "!! NOTE !!: If the status shows 'Probe (primary server)', this may indicate that your connection is using DS-Lite or a CG-NAT. In that case, Teredo will not work." -ForegroundColor Red
 Write-Host ""
 Write-Host "NAT Explanation:" -ForegroundColor Cyan
 Write-Host "----------------" -ForegroundColor Cyan
@@ -55,4 +54,3 @@ if ($disable -match '^[Yy]$') {
 }
 
 Read-Host "Press Enter to exit the script"
-
